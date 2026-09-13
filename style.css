@@ -24,3 +24,149 @@
 
     --box-shadow-color: rgba(0, 0, 0, 0.06);
 }
+
+/* =========================================
+   Layout cleanup
+   ========================================= */
+
+/* Less "booked4 corporate serif" */
+:root {
+    --font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* Main page width */
+
+.App__container {
+    max-width: 1100px;
+}
+
+.App__container-inner {
+    width: 100%;
+    padding: 2.5rem 3rem 3.5rem;
+}
+
+
+/* Header follows same width */
+
+.header__nav-bar {
+    max-width: 1100px;
+    min-height: 4.5rem;
+}
+
+.header__lateral {
+    height: 4.5rem;
+}
+
+
+/* Hero / intro */
+
+.hero-section__description {
+    width: 100%;
+    max-width: 800px;
+
+    padding: 2rem 2rem 0;
+}
+
+
+/* =========================================
+   Booking area
+   ========================================= */
+
+.App__booking-module {
+    border: 1px solid var(--spacer-grey-color);
+
+    padding: 2.5rem 3rem;
+
+    background: var(--container-bg-color);
+}
+
+
+/*
+   Booked4 normally makes the open calendar:
+   width: 95vw;
+   max-width: 1500px;
+
+   Stop that madness.
+*/
+
+.booking-step--full-width .booking-step__body--open {
+    width: 100%;
+    max-width: 100%;
+
+    align-self: stretch;
+}
+
+
+/* Calendar should obey its parent */
+
+.timetable,
+.timetable__calendar,
+.fc {
+    width: 100%;
+    max-width: 100%;
+}
+
+.fc-col-header,
+.fc-daygrid-body,
+.fc-scrollgrid-sync-table {
+    width: 100% !important;
+}
+
+
+/* Slightly less enormous gaps */
+
+.home__section {
+    margin-bottom: 3rem;
+}
+
+.booking-step {
+    margin-bottom: 0.5rem;
+}
+
+
+/* =========================================
+   About / contact
+   ========================================= */
+
+#about-us,
+#contact-info {
+    border-top: 1px solid var(--spacer-grey-color);
+    padding-top: 2.5rem;
+}
+
+.about-us__title {
+    margin-bottom: 1.5rem;
+}
+
+.contact-info {
+    margin-bottom: 0;
+}
+
+.contact-info > * {
+    margin-bottom: 2rem;
+}
+
+
+/* =========================================
+   Mobile
+   ========================================= */
+
+@media screen and (max-width: 48rem) {
+
+    .App__container-inner {
+        padding: 2rem 1rem;
+    }
+
+    .App__booking-module {
+        padding: 1.5rem 1rem;
+    }
+
+    .timetable__calendar {
+        overflow-x: auto;
+    }
+
+    .fc {
+        min-width: 650px;
+    }
+}
