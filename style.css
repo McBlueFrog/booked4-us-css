@@ -1,41 +1,36 @@
 :root {
-    --site-bg-color: #f7f8f6;
+    --site-bg-color: #ffffff;
     --container-bg-color: #ffffff;
 
-    --dark-text-color: #252825;
-    --light-text-color: #696e69;
+    --dark-text-color: #252525;
+    --light-text-color: #696969;
 
-    --primary-select-color: #628b6c;
-    --secondary-select-color: #b8d0be;
+    --primary-select-color: #eb165e;
+    --secondary-select-color: #fbd6de;
 
-    --primary-button-bg-color: #628b6c;
-    --primary-button-bg-hover-color: #4e7257;
+    --primary-button-bg-color: #eb165e;
+    --primary-button-bg-hover-color: #c91350;
     --primary-button-text-color: #ffffff;
 
-    --active-green-color: #7da568;
+    --active-green-color: #eb165e;
     --inactive-grey-color: #aaaead;
 
     --steps-bg-color: #ffffff;
-    --spacer-grey-color: #dce2dc;
+    --spacer-grey-color: #eeeeee;
 
     --form-widget-color: #ffffff;
-    --form-widget-border-color: #d6dbd6;
-    --form-widget-border-hover-color: #979f98;
+    --form-widget-border-color: #e2e2e2;
+    --form-widget-border-hover-color: #eb165e;
 
     --box-shadow-color: rgba(0, 0, 0, 0.06);
-}
 
-/* =========================================
-   Layout cleanup
-   ========================================= */
-
-/* Less "booked4 corporate serif" */
-:root {
     --font-family: "Segoe UI", Arial, sans-serif;
 }
 
 
-/* Main page width */
+/* =========================================
+   Main layout
+   ========================================= */
 
 .App__container {
     max-width: 1100px;
@@ -47,7 +42,7 @@
 }
 
 
-/* Header follows same width */
+/* Header */
 
 .header__nav-bar {
     max-width: 1100px;
@@ -59,7 +54,9 @@
 }
 
 
-/* Hero / intro */
+/* =========================================
+   Hero / intro
+   ========================================= */
 
 .hero-section__description {
     width: 100%;
@@ -83,11 +80,8 @@
 
 
 /*
-   Booked4 normally makes the open calendar:
-   width: 95vw;
-   max-width: 1500px;
-
-   Stop that madness.
+   Keep the calendar inside the normal
+   page width instead of expanding to 95vw.
 */
 
 .booking-step--full-width .booking-step__body--open {
@@ -98,13 +92,14 @@
 }
 
 
-/* Calendar should obey its parent */
+/* Calendar follows its parent */
 
 .timetable,
 .timetable__calendar,
 .fc {
     width: 100%;
     max-width: 100%;
+    min-width: 0;
 }
 
 .fc-col-header,
@@ -114,7 +109,33 @@
 }
 
 
-/* Slightly less enormous gaps */
+/* Main calendar accent */
+
+.fc .fc-button-primary {
+    background-color: #eb165e;
+    border-color: #eb165e;
+}
+
+.fc .fc-button-primary:hover,
+.fc .fc-button-primary:focus {
+    background-color: #c91350;
+    border-color: #c91350;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+    background-color: #c91350;
+    border-color: #c91350;
+}
+
+
+/* Selected / highlighted calendar areas */
+
+.fc .fc-highlight {
+    background: #fbd6de;
+}
+
+
+/* Slightly tighter page spacing */
 
 .home__section {
     margin-bottom: 3rem;
@@ -154,19 +175,103 @@
 
 @media screen and (max-width: 48rem) {
 
+    .App__container {
+        width: 100%;
+        max-width: 100%;
+    }
+
     .App__container-inner {
-        padding: 2rem 1rem;
+        width: 100%;
+        padding: 1.5rem 0.75rem 2rem;
+        box-sizing: border-box;
     }
 
     .App__booking-module {
-        padding: 1.5rem 1rem;
+        width: 100%;
+        padding: 1.25rem 0.5rem;
+        box-sizing: border-box;
     }
 
+
+    /* Do NOT horizontally overflow the timetable */
+
+    .timetable,
     .timetable__calendar {
-        overflow-x: auto;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
     }
 
     .fc {
-        min-width: 650px;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .fc-scrollgrid,
+    .fc-scrollgrid-sync-table,
+    .fc-col-header,
+    .fc-daygrid-body {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+
+    /* Make calendar content more compact */
+
+    .fc {
+        font-size: 0.8rem;
+    }
+
+    .fc .fc-toolbar {
+        gap: 0.4rem;
+        flex-wrap: wrap;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: 1.1rem;
+    }
+
+    .fc .fc-button {
+        padding: 0.35rem 0.55rem;
+        font-size: 0.8rem;
+    }
+
+
+    /* Day headers */
+
+    .fc .fc-col-header-cell-cushion {
+        padding: 0.35rem 0.1rem;
+        font-size: 0.72rem;
+    }
+
+
+    /* Time labels */
+
+    .fc .fc-timegrid-slot-label-cushion {
+        padding: 0 0.2rem;
+        font-size: 0.7rem;
+    }
+
+
+    /* Calendar events */
+
+    .fc .fc-event {
+        font-size: 0.7rem;
+        line-height: 1.15;
+    }
+
+    .fc .fc-event-main {
+        padding: 1px 2px;
+    }
+
+
+    /* Prevent long text from forcing columns wider */
+
+    .fc-event-title,
+    .fc-event-time {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }
